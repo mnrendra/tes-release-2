@@ -33,10 +33,6 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/github",
     "@semantic-release/npm",
-    ["@semantic-release/git", {
-      "assets": ["package.json", "package-lock.json"],
-      "message": "release: v${nextRelease.version}\n\n${nextRelease.notes}"
-    }],
     ["@semantic-release/exec", {
       "prepareCmd": "npx clean-package",
       "publishCmd": "git add package.json package-lock.json && git config --list && git commit -m release: v${nextRelease.version}\n\n${nextRelease.notes} && git tag v${nextRelease.version} && git push origin main --tags",
