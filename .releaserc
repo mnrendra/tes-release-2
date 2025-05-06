@@ -35,7 +35,7 @@
     "@semantic-release/npm",
     ["@semantic-release/exec", {
       "prepareCmd": "npx clean-package",
-      "publishCmd": "git add package.json package-lock.json && git config --list && git commit -m release: v${nextRelease.version}\n\n${nextRelease.notes} && git push origin main",
+      "publishCmd": "git add package.json package-lock.json && git config --list && git commit -m 'release: v${nextRelease.version}\n\n${nextRelease.notes}' && git tag v${nextRelease.version} -m 'release: v${nextRelease.version}\n\n${nextRelease.notes}' && git push origin main --tags",
       "successCmd": "npx clean-package restore"
     }]
   ]
