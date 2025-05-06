@@ -31,9 +31,6 @@
       ]
     }],
     "@semantic-release/release-notes-generator",
-    ["@semantic-release/exec", {
-      "publishCmd": "git tag -d v${nextRelease.version} && git tag -s v${nextRelease.version} -m 'susu: v${nextRelease.version}\n\n${nextRelease.notes}'"
-    }],
     "@semantic-release/github",
     "@semantic-release/npm",
     ["@semantic-release/git", {
