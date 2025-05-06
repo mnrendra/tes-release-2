@@ -1,6 +1,6 @@
 {
   "name": "@mnrendra/tes-release-2",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Tes release asu.",
   "private": false,
   "main": "dist/index.js",
