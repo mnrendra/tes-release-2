@@ -88,8 +88,8 @@ jobs:
         run: npx semantic-release
 
       # Rebase Development Branch
-      - name: Rebase Development Branch
-        run: |
-          git checkout dev
-          git pull --rebase origin main
-          git push --force origin dev
+      # - name: Rebase Development Branch
+      #   run: |
+      #     git checkout dev
+      #     git pull --rebase origin main
+      #     git push --force origin dev
