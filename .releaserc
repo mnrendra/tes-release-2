@@ -38,8 +38,8 @@
       "message": "release: v${nextRelease.version}\n\n${nextRelease.notes}"
     }],
     ["@semantic-release/exec", {
-      "prepareCmd": "npx clean-package && git config --global tag.gpgSign true",
-      "publishCmd": "ls -laihs && echo \"${process.env.GITHUB_REPOSITORY}\" && echo \"v${nextRelease.version}\" && echo \"v${nextRelease.name}\"",
+      "prepareCmd": "npx clean-package",
+      "publishCmd": "git add package.json package-lock.json && git config --list && git commit -m release: v${nextRelease.version}\n\n${nextRelease.notes} && git tag v${nextRelease.version} && git push origin main --tags",
       "successCmd": "npx clean-package restore"
     }]
   ]
