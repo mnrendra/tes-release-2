@@ -43,18 +43,18 @@ jobs:
           token: ${{ secrets.TOKEN }}
       
       # Pre Import GPG
-      - name: Pre Import GPG
-        run: |
-          mkdir -p ~/.gnupg
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          git config --global gpg.program gpg
+      # - name: Pre Import GPG
+      #   run: |
+      #     mkdir -p ~/.gnupg
+      #     echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+      #     echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+      #     git config --global gpg.program gpg
 
       # Import GPG
       - name: Import GPG
         uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6.3.0
         with:
-          fingerprint: ${{ secrets.GPG_FINGERPRINT }}
+          # fingerprint: ${{ secrets.GPG_FINGERPRINT }}
           git_commit_gpgsign: true
           # git_push_gpgsign: true
           git_tag_gpgsign: true
