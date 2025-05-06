@@ -48,6 +48,7 @@ jobs:
           mkdir -p ~/.gnupg
           echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
           echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+          git config --global gpg.program gpg
 
       # Import GPG
       - name: Import GPG
