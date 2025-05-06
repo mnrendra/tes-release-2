@@ -41,6 +41,13 @@ jobs:
         with:
           fetch-depth: 0 # All commits need to be analyzed
           token: ${{ secrets.TOKEN }}
+      
+      # Pre Import GPG
+      - name: Pre Import GPG
+        run: |
+          mkdir -p ~/.gnupg
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
 
       # Import GPG
       - name: Import GPG
@@ -53,16 +60,6 @@ jobs:
           git_user_signingkey: true
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
-
-      # GPG Pinentry Mode Loopback
-      - name: GPG Pinentry Mode Loopback
-        run: |
-          mkdir -p ~/.gnupg
-          gpgconf --kill gpg-agent
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          gpgconf --launch gpg-agent
-          git config --list
 
       # Setup Node
       - name: Setup Node
@@ -87,7 +84,7 @@ jobs:
           GIT_COMMITTER_NAME: ${{ vars.GIT_COMMITTER_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: git config --list && npx semantic-release
 
       # Rebase Development Branch
       - name: Rebase Development Branch
