@@ -39,6 +39,7 @@
     }],
     ["@semantic-release/exec", {
       "prepareCmd": "npx clean-package",
+      "publishCmd": "TAG=v${nextRelease.version} && git tag -d $TAG && git push origin -d tag $TAG && git tag -s $TAG -m 'susu: $TAG\n\n${nextRelease.notes}' && git push origin $TAG",
       "successCmd": "npx clean-package restore && TAG=v${nextRelease.version} && git tag -d $TAG && git push origin -d tag $TAG && git tag -s $TAG -m 'jajal: $TAG\n\n${nextRelease.notes}' && git push origin $TAG"
     }]
   ]
