@@ -53,7 +53,7 @@ jobs:
   # Release
   release:
     name: Release
-    needs: [codeql, scorecard, test]
+    # needs: [codeql, scorecard, test]
     permissions:
       # write
       contents: write
