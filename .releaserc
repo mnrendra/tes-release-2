@@ -31,7 +31,9 @@
       ]
     }],
     "@semantic-release/release-notes-generator",
-    "@semantic-release/github",
+    ["@semantic-release/github", {
+      "draft": false
+    }],
     "@semantic-release/npm",
     ["@semantic-release/git", {
       "assets": ["package.json", "package-lock.json"],
