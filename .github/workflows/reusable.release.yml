@@ -3,8 +3,8 @@ name: Test
 on:
   workflow_call:
     secrets:
-      GPG_FINGERPRINT:
-        required: true
+      # GPG_FINGERPRINT:
+      #   required: true
       GPG_PASSPHRASE:
         required: true
       GPG_PRIVATE_KEY:
@@ -88,8 +88,8 @@ jobs:
         run: npx semantic-release
 
       # Rebase Development Branch
-      # - name: Rebase Development Branch
-      #   run: |
-      #     git checkout dev
-      #     git pull --rebase origin main
-      #     git push --force origin dev
+      - name: Rebase Development Branch
+        run: |
+          git checkout dev
+          git pull --rebase origin main
+          git push --force origin dev

@@ -31,9 +31,15 @@
       ]
     }],
     "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    ["@semantic-release/git", {
+      "assets": ["package.json", "package-lock.json"],
+      "message": "release: v${nextRelease.version}\n\n${nextRelease.notes}"
+    }],
     ["@semantic-release/exec", {
-      "prepareCmd": "npx clean-package && git tag --list",
-      "publishCmd": "git tag --list && git add package.json package-lock.json && git commit -m 'release: v${nextRelease.version}\n\n${nextRelease.notes}' && git push origin main",
+      "prepareCmd": "npx clean-package",
+      "publishCmd": "git tag -d v${nextRelease.version} && git tag -s v${nextRelease.version} -m 'release: v${nextRelease.version}\n\n${nextRelease.notes}'",
       "successCmd": "npx clean-package restore"
     }]
   ]

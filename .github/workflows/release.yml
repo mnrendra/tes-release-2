@@ -62,7 +62,7 @@ jobs:
       pull-requests: write
     uses: ./.github/workflows/reusable.release.yml
     secrets:
-      GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
+      # GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
