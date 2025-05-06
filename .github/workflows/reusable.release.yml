@@ -54,6 +54,16 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
+      # GPG Pinentry Mode Loopback
+      - name: GPG Pinentry Mode Loopback
+        run: |
+          mkdir -p ~/.gnupg
+          gpgconf --kill gpg-agent
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+          gpgconf --launch gpg-agent
+          git config --list
+
       # Setup Node
       - name: Setup Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
