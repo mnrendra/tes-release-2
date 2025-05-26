@@ -31,21 +31,16 @@
       ]
     }],
     "@semantic-release/release-notes-generator",
-    ["@semantic-release/exec", {
-      "publishCmd": "echo 1 && git tag --list"
-    }],
-    ["@semantic-release/github", {
-      "draft": false
-    }],
+    "@semantic-release/github",
     "@semantic-release/npm",
     ["@semantic-release/git", {
       "assets": ["package.json", "package-lock.json"],
       "message": "release: v${nextRelease.version}\n\n${nextRelease.notes}"
     }],
     ["@semantic-release/exec", {
-      "prepareCmd": "echo 2 && git tag --list && npx clean-package",
-      "publishCmd": "echo 3 && git tag --list ",
-      "successCmd": "echo 4 && git tag --list && npx clean-package restore"
+      "prepareCmd": "npx clean-package",
+      "publishCmd": "git tag -d v${nextRelease.version} && git push origin -d tag v${nextRelease.version} && git tag -s v${nextRelease.version} -m 'susu: v${nextRelease.version}\n\n${nextRelease.notes}' && git push origin v${nextRelease.version}",
+      "successCmd": "npx clean-package restore"
     }]
   ]
 }
